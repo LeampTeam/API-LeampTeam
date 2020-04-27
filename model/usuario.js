@@ -8,6 +8,7 @@ var UsuarioFrontSchema=Schema({
     surname:String,
     email:String,
     password:String,  
+    articulos:[{ type: Schema.Types.ObjectId, ref: 'Articulo' }],
     role:String,
     crateAt:String,
     img:String,

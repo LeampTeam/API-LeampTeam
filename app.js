@@ -9,6 +9,7 @@ var path = require('path');
 var home_routes=require('./route/home')
 var producto_routes=require('./route/producto')
 var usuario_routes=require('./route/usuario')
+var carroCompra_routes=require('./route/carroCompra')
 
 
 app.use((req, res, next) => {
@@ -30,6 +31,7 @@ app.use(express.json());
 app.use('/',home_routes)
 app.use('/producto',producto_routes)
 app.use('/usuario',usuario_routes)
+app.use('/shop',carroCompra_routes)
 
 module.exports=app;
 
