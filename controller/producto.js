@@ -92,7 +92,7 @@ function uploadImage(req, res) {
 function getImageFile(req, res) {
     var imageFile = req.params.img;
     console.log(imageFile)
-    var pathFile = './imagenes/producto/' + imageFile
+    var pathFile = './imagenes/' + imageFile
 
     fs.exists(pathFile, (exists) => {
         if (exists) {
