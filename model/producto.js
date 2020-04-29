@@ -10,11 +10,11 @@ var ProducSchema=Schema({
     code:String,  
     stock:Number,
     crateAt:String,
-    marca:{ type: Schema.Types.ObjectId, ref: 'Marca' },
+    marca:String,
     img:String,
     esFragancia:Boolean,
-    categoria: { type: Schema.Types.ObjectId, ref: 'Categoria' },
-    fragancia: { type: Schema.Types.ObjectId, ref: 'Fragancia' },
+    categoria:String,
+    fragancia:String,
     eliminado:Boolean
 
 })

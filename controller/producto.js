@@ -1,15 +1,10 @@
 var Producto= require('../model/producto');
-var Marca=require('../model/marca')
-var Categoria=require('../model/categoria')
-var Fragancia=require('../model/fragancia')
 var fs = require('fs');
 var path = require('path');
 
 function getproductos(req,res){
-    Producto.find({eliminado: { $ne: true }},'_id name description price code stock img ')
-       .populate('marca','name')
-       .populate('categoria','name')
-       .populate('fragancia','name')
+    Producto.find({eliminado: { $ne: true }},
+    '_id name description price code stock img categoria marca fragancia ')
         .exec((err,producto)=>{
             console.log(err)
             console.log(producto)
@@ -21,9 +16,9 @@ function getproductos(req,res){
                    description:producto[i].description,
                    code:producto[i].code,
                    price:producto[i].price,
-                   fragancia:producto[i].fragancia!=null?producto[i].fragancia.name:"",
-                   categoria:producto[i].categoria.name,
-                   marca:producto[i].marca.name,
+                   fragancia:producto[i].fragancia,
+                   categoria:producto[i].categoria,
+                   marca:producto[i].marca,
                    img:"http://127.0.0.1:4000/producto/getImageFile/"+producto[i].img
 
                }
@@ -46,16 +41,16 @@ function getproductoById(req,res){
             description:producto.description,
             code:producto.code,
             price:producto.price,
-            fragancia:producto.fragancia!=null?producto.fragancia.name:"",
-            categoria:producto.categoria.name,
-            marca:producto.marca.name,
+            fragancia:producto.fragancia,
+            categoria:producto.categoria,
+            marca:producto.marca,
             img:"http://127.0.0.1:4000/producto/getImageFile/"+producto.img
 
         }
         res.send(
             produ
         );
-    }).populate('categoria').populate('fragancia').populate('marca')
+    })
 }
 
 function uploadImage(req, res) {
