@@ -5,7 +5,7 @@ var app=require('./app')
 var port= 4000;
 
 mongoose.Promise=global.Promise;
-mongoose.connect('mongodb://localhost:27017/almacenBackEnd',
+mongoose.connect('mongodb://localhost:27017/almacenFrontEnd',
  {useNewUrlParser: true,useCreateIndex:true,useUnifiedTopology: true})
     .then(()=>{
         console.log('La conexion a la base de datos fue creada')
