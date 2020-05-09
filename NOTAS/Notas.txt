@@ -1,0 +1,2 @@
+1-Agregar tooltip a los botones de los productos
+2-Crear archivo de configuracion para ruta de las imagenes entre windows y ubuntu
