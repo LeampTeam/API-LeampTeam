@@ -7,6 +7,7 @@ let md_auth=require('../middleware/authenticated')
 
 api.get('/getProductos',producto.getproductos)
 api.get('/getProducto/:id',producto.getproductoById)
+api.get('/getProductosPuntera',producto.getproductoPuntera)
 
 api.get('/getImageFile/:img',producto.getImageFile );
 

@@ -53,6 +53,15 @@ function getproductoById(req,res){
     })
 }
 
+function getproductoPuntera(req,res){
+    Producto.find({estaEnPuntera:'true'},function(err,productos){
+        if(err) return res.status(500).send({message:'error en el servidor'})
+
+        if(productos) return res.status(200).send(productos)
+    })
+}
+
+
 function uploadImage(req, res) {
     console.log(req.body.productId)
     var productid = req.body.productId
@@ -87,7 +96,7 @@ function uploadImage(req, res) {
 function getImageFile(req, res) {
     var imageFile = req.params.img;
     console.log(imageFile)
-    var pathFile = './imagenes/' + imageFile
+    var pathFile = './imagenes/producto/' + imageFile
 
     fs.exists(pathFile, (exists) => {
         if (exists) {
@@ -108,7 +117,8 @@ module.exports={
     getproductos,
     getproductoById,
     uploadImage,
-    getImageFile
+    getImageFile,
+    getproductoPuntera
   
 
 }
