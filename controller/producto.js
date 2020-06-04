@@ -5,6 +5,7 @@ var path = require('path');
 function getproductos(req,res){
     Producto.find({eliminado: { $ne: true }},
     '_id name description price code stock img categoria marca fragancia ')
+   
         .exec((err,producto)=>{
             console.log(err)
             console.log(producto)
@@ -56,8 +57,24 @@ function getproductoById(req,res){
 function getproductoPuntera(req,res){
     Producto.find({estaEnPuntera:'true'},function(err,productos){
         if(err) return res.status(500).send({message:'error en el servidor'})
+        let productosVista=[]
+        for(let i=0;i<productos.length;i++){
+            produ={
+                id:productos[i].id,
+                name:productos[i].name,
+                description:productos[i].description,
+                code:productos[i].code,
+                price:productos[i].price,
+                fragancia:productos[i].fragancia,
+                categoria:productos[i].categoria,
+                marca:productos[i].marca,
+                img:"http://127.0.0.1:4000/producto/getImageFile/"+productos[i].img
 
-        if(productos) return res.status(200).send(productos)
+            }
+            productosVista.push(produ)
+        }
+
+        return res.status(200).send(productosVista)
     })
 }
 
