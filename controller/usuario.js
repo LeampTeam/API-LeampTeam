@@ -77,7 +77,7 @@ function loguear(req,res){
                             
                         
                         }else{
-                            return res.status(200).send({message:'Error en el email o en la password'})
+                            return res.status(200).send({message:'Errorr en el email o en la password'})
                         }
                     })
                 }else{

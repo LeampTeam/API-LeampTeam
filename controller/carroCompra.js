@@ -17,7 +17,7 @@ var Fragancia=require('../model/fragancia')
     let user=req.user
     let producto=req.body
     console.log(producto)
-    let prod= await Producto.findById(producto.id).populate('categoria').populate('marca').populate('fragancia')
+    let prod= await Producto.findById(producto.id)
     let articulo=new Articulo();
         
     console.log("producto",prod)
@@ -69,9 +69,21 @@ var Fragancia=require('../model/fragancia')
         }
         
     }
+
+    function confirmarCompra(req,res){
+        let user=req.user
+        Usuario.findById(user.sub).populate('articulos').exec(function(err,user){
+            //Generar pdf
+            //mandar mail con el pdf
+            //eliminar Articulos del array
+            //mandar a un historial
+        })
+    }
+    
 module.exports={
     comprarProductos,
-    enviarArticulos
+    enviarArticulos,
+    confirmarCompra
 
     
     }

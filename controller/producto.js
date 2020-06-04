@@ -79,6 +79,7 @@ function getproductoPuntera(req,res){
 }
 
 
+
 function uploadImage(req, res) {
     console.log(req.body.productId)
     var productid = req.body.productId
@@ -135,7 +136,8 @@ module.exports={
     getproductoById,
     uploadImage,
     getImageFile,
-    getproductoPuntera
+    getproductoPuntera,
+   
   
 
 }
