@@ -152,12 +152,19 @@ function uploadImage(req, res) {
         var file_ext = ext_split[1]
 
         if (file_ext == 'png' || file_ext == 'jpg' || file_ext == 'jpeg' || file_ext == 'gif') {
+            Usuario.findById(user.sub,(err,usu)=>{
+                if(usu.img!=null){
+                    fs.unlinkSync('./imagenes/usuarios/'+usu.img)
+                }
+               
+            })
+           
             Usuario.findByIdAndUpdate(user.sub, { img: file_name }, { new: true }, (err, usuarioUpdate) => {
                 if (err) return res.status(500).send({ message: 'Error en la peticion' })
 
                 if (!usuarioUpdate) return res.status(404).send({ message: 'No se ha podido Actualizar' })
 
-                return res.status(200).send('Imagen cargada')
+                return res.status(200).send({mensaje:'ok',img:usuarioUpdate.img})
             })
         } else {
             removeFilesOfUploads(res, file_path, 'La extencion no es valida')
